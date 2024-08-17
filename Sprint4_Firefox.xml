@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
 
-    <parameter name="browserName" value="firefox"/>
+    <parameter name="browserName" value="firefox-headless"/>
 
     <test name="check that when click on logout i shold be redirected to the login page">
         <classes>
