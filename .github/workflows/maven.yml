@@ -1,4 +1,4 @@
-name: Selenium Tests with Firefox
+name: Selenium Tests
 
 on:
   push:
@@ -60,32 +60,3 @@ jobs:
           echo "Total test cases = ${{ steps.extract_results.outputs.total }}"
           echo "Passed test cases = ${{ steps.extract_results.outputs.passed }}"
           echo "Failed test cases = ${{ steps.extract_results.outputs.failed }}"
-
-      - name: Generate Markdown table
-        id: generate_markdown_table
-        run: |
-          echo "### Test Results:"
-          echo "### Passed Test Cases:"
-          xmlstarlet sel -t -m "//test-method[@status='PASS' and not(@name=preceding::test-method[@status='PASS']/@name)]" -v "@name" -n target/surefire-reports/testng-results.xml
-          echo "------------------------------"
-          echo "### Failed Test Cases:"
-          failed_tests=$(xmlstarlet sel -t -v "count(//test-method[@status='FAIL'])" target/surefire-reports/testng-results.xml)
-          if [ "$failed_tests" -gt 0 ]; then
-            xmlstarlet sel -t -m "//test-method[@status='FAIL' and not(@name=preceding::test-method[@status='FAIL']/@name)]" -v "@name" -n target/surefire-reports/testng-results.xml
-          else
-            echo "No failed test cases."
-          fi
-
-      - name: Upload Surefire XML report as artifact
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: surefire-reports
-          path: target/surefire-reports
-
-      - name: Upload Markdown table as artifact
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: markdown_table.md  # Adjust the path if necessary
