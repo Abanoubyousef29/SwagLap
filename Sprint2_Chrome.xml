@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="browserName" value=""></parameter>
+    <test name="check that each item contains title">
+        <classes>
+            <class name="TC02_Products">
+                <methods>
+                    <include name="eachItemContainsTitle"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that each item contains price">
+        <classes>
+            <class name="TC02_Products">
+                <methods>
+                    <include name="eachItemContainsPrice"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that each item contains description">
+        <classes>
+            <class name="TC02_Products">
+                <methods>
+                    <include name="eachItemContainsDescription"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that the items can be sorted">
+        <classes>
+            <class name="TC02_Products">
+                <methods>
+                    <include name="sorting"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

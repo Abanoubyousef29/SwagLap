@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="browserName" value=""></parameter>
+
+    <test name="check that the cart is updated when adding a new item">
+        <classes>
+            <class name="TC03_ShoppingCart">
+                <methods>
+                    <include name="cartUpdatedWhenAddingAProduct"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that the cart is updated when removing a new item">
+        <classes>
+            <class name="TC03_ShoppingCart">
+                <methods>
+                    <include name="cartUpdatedWhenRemovingAProduct"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that the cart badge is updated when adding a new item">
+        <classes>
+            <class name="TC03_ShoppingCart">
+                <methods>
+                    <include name="cartBagdeUpdatedWhenAddingAProduct"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="check that the cart badge is updated when removing a new item">
+        <classes>
+            <class name="TC03_ShoppingCart">
+                <methods>
+                    <include name="cartBagdeUpdatedWhenRemovingAProduct"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <parameter name="browserName" value="firefox"/>
+
+    <test name="check that when click on logout i shold be redirected to the login page">
+        <classes>
+            <class name="TC04_BurgerMenu">
+                <methods>
+                    <include name="logoutIsWorking"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
