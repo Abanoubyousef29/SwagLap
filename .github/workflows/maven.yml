@@ -3,11 +3,11 @@ name: Selenium Tests
 on:
   push:
     branches:
-      - master  # Trigger on push to the master branch
+      - master
   pull_request:
     branches:
-      - master  # Trigger on pull requests targeting the master branch
-  workflow_dispatch:  # Enable manual triggering
+      - master
+  workflow_dispatch:
 
 jobs:
   build-and-test:
@@ -22,8 +22,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          architecture: 'x64'
-          maven-version: '3.1.0'  # Specify the Maven version if needed
+          maven-version: '3.1.0'
 
       - name: Install xmlstarlet
         run: sudo apt-get install -y xmlstarlet
@@ -35,23 +34,17 @@ jobs:
         run: docker run --rm selenium/standalone-firefox:latest firefox --version
 
       - name: Build and Test with Maven
-        run: mvn clean verify  # Adjust this command based on your Maven goals
-
-      - name: Download and Install Allure Commandline
-        run: |
-          curl -o allure-commandline.zip -L "https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.11.0/allure-commandline-2.11.0.zip"
-          unzip allure-commandline.zip -d allure-commandline
-          export PATH=$PATH:`pwd`/allure-commandline/allure-2.11.0/bin
+        run: mvn clean verify
 
       - name: Generate Allure Report
-        run: mvn allure:report  # Generate the Allure report
+        run: mvn allure:report
 
       - name: Upload Allure Report as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: allure-report
-          path: target/site/allure-maven-plugin  # Adjust the path if necessary
+          path: target/site/allure-maven-plugin
 
       - name: Display Surefire XML report
         if: always()
