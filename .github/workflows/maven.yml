@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           architecture: 'x64'
-          maven-version: '3.1.0'  # Specify the Maven version if needed
+          maven-version: '3.8.6'  # Updated Maven version
 
       - name: Install xmlstarlet
         run: sudo apt-get install -y xmlstarlet
@@ -35,17 +35,23 @@ jobs:
         run: docker run --rm selenium/standalone-firefox:latest firefox --version
 
       - name: Build and Test with Maven
-        run: mvn clean verify  # Adjust this command based on your Maven goals
+        run: mvn clean verify
 
       - name: Generate Allure Report
-        run: mvn allure:report  # Generate the Allure report
+        run: mvn allure:report
+
+      - name: Install Allure Commandline
+        run: |
+          curl -o allure-commandline.zip -L "https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${{ secrets.ALLURE_VERSION }}/allure-commandline-${{ secrets.ALLURE_VERSION }}.zip"
+          unzip allure-commandline.zip -d allure
+          sudo mv allure/allure-${{ secrets.ALLURE_VERSION }}/bin/allure /usr/local/bin
 
       - name: Upload Allure Report as artifact
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: allure-report
-          path: target/site/allure-maven-plugin  # Adjust the path if necessary
+          path: target/allure-report  # Adjust the path to where the Allure report is generated
 
       - name: Display Surefire XML report
         if: always()
