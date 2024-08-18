@@ -29,7 +29,7 @@ To set up the SWAGLAPS application locally, follow these steps:
 ## Installation Steps for Selenium 4 (Java)
 
 1. **Clone Repository**:
-   - git clone <https://github.com/Abanoubyousef29/SWAGLAPS>
+   - git clone <https://github.com/Abanoubyousef29/SwagLap>
 2. **Navigate to Project Directory**:
    - cd SWAGLAPS
 3. **Install Dependencies**:
